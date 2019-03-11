@@ -24,24 +24,25 @@ export class LodashComponent implements OnInit {
 
   ngOnInit() {
     this.test();
-    this.xunhuan();
+    this.times();
     this.cloneDeep();
     this.omit();
+    this.pick();
   }
 
   public test() {
-    // console.log(_);
-    // console.log(lodashArray);
-    // console.log(lodashObject);
-    // console.log(lodashString);
-    // console.log(lodashMath);
-    // console.log(lodashCollection);
-    // console.log(lodashFunction);
-    // console.log(Collect);
+    console.log(_);
+    console.log(lodashArray);
+    console.log(lodashObject);
+    console.log(lodashString);
+    console.log(lodashMath);
+    console.log(lodashCollection);
+    console.log(lodashFunction);
+    console.log(Collect);
   }
 
   //循环
-  public xunhuan() {
+  public times() {
     for(let i = 0;i < 5;i++) {
       // console.log(i);
     }
@@ -52,7 +53,7 @@ export class LodashComponent implements OnInit {
 
   //在指定范围内获取一个随机值 
   public random(min: number,max: number) {
-    Math.floor(Math.random() * (max - min)) + min;
+    // Math.floor(Math.random() * (max - min)) + min;
     _.random(min,max);
     _.random(min,max,true);
   }
@@ -66,15 +67,15 @@ export class LodashComponent implements OnInit {
     // console.log(o === o2);  // false
   }
 
-  //去掉对象的某些属性 
+  //去掉对象的某些属性 (提交表单时有些字段不要提交)
   public omit() {
     let o = {
       a: 1,
       b: 2,
       c: 3,
-      d: 4,
-      e: 5,
-      f: 'string'
+      d: 'D',
+      e: 'E',
+      f: 'F'
     }
     // delete o.a
     let delArr = ['a','b','c'];
@@ -86,9 +87,16 @@ export class LodashComponent implements OnInit {
     console.log(o);
   }
 
-  //从某个对象中选择部分属性组成新的对象 
+  //从某个对象中选择部分属性组成新的对象 (只提交某些字段)
   public pick() {
-    
+    let o = {
+      a : 'useful',
+      b: 'useless'
+    }
+    let newO = _.pick(o,['useful']);
+    console.log(newO);
   }
+
+  
 
 }
