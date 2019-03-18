@@ -8,7 +8,8 @@ import { BasicComponent } from './basic/basic.component';
 import { EchartsInstanceComponent } from './instance/instance.component';
 import { EventsComponent } from './events/events.component';
 import { UpdateChartComponent } from './update-chart/update-chart.component';
-import { LodashComponent } from './lodash/lodash.component'
+import { LodashComponent } from './lodash/lodash.component';
+import { CurryComponent } from './curry/curry.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { LodashComponent } from './lodash/lodash.component'
     EchartsInstanceComponent,
     EventsComponent,
     UpdateChartComponent,
-    LodashComponent
+    LodashComponent,
+    CurryComponent
   ],
   imports: [
     BrowserModule,

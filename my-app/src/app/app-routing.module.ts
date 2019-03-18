@@ -5,6 +5,8 @@ import { EchartsInstanceComponent } from './instance/instance.component';
 import { EventsComponent } from './events/events.component';
 import { UpdateChartComponent } from './update-chart/update-chart.component';
 import { LodashComponent } from './lodash/lodash.component';
+import { CurryComponent } from './curry/curry.component';
+
  
 
  
@@ -14,7 +16,8 @@ const routes: Routes = [
   { path: 'instance', component: EchartsInstanceComponent },
   { path: 'events', component: EventsComponent },
   { path: 'update-chart', component: UpdateChartComponent },
-  { path: 'lodash', component:  LodashComponent}
+  { path: 'lodash', component:  LodashComponent},
+  { path: 'curry', component:  CurryComponent}
 ];
  
 @NgModule({
