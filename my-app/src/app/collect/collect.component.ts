@@ -23,6 +23,7 @@ import {
       console.log(Collect);
     }
   
+     // http://stackoverflow.com/questions/4459928/how-to-deep-clone-in-javascript
     public clone(item) {
       if (!item) {
         return item;

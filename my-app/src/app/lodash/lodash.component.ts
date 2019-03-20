@@ -28,11 +28,13 @@ export class LodashComponent implements OnInit {
   ngOnInit() {
     // this.test();
     // this.times();
+    this.random(1,10);
     // this.cloneDeep();
     // this.omit();
     // this.pick();
     // this.forEach();
-    // this.curry();
+    // this.chain();
+    // this.lazy();
   }
 
   public test() {
@@ -60,29 +62,28 @@ export class LodashComponent implements OnInit {
   //在指定范围内获取一个随机值 
   public random(min: number,max: number) {
     // Math.floor(Math.random() * (max - min)) + min;
-    _.random(min,max);
-    _.random(min,max,true);
+    this.print(_.random(min,max));
+    this.print(_.random(min,max,true));//生成随机的浮点数
   }
 
-  //深度克隆JavaScript对象 
+  //深度克隆JavaScript对象
   public cloneDeep() {
     let o = {a:1,b:2};
-    let o1 = JSON.parse(JSON.stringify(o));
-    let o2 = _.cloneDeep(o);
-    this.print(o === o2);
+    let o1 = _.cloneDeep(o);
+    this.print(o === o1);
 
     // let f = {
     //   fun: function() {
     //     console.log('F');
     //   }
     // }
-    // let f1 = JSON.parse(JSON.stringify(f));
+    // let f1 = JSON.parse(JSON.stringify(f));  //对象中的属性值不能是函数
     // let f2 = _.cloneDeep(f);
     // console.log(f1);
     // console.log(f2);
   }
 
-  //去掉对象的某些属性 (提交表单时有些字段不要提交)
+  //筛选属性  去掉对象的某些属性
   public omit() {
     let o = {
       a: 1,
@@ -97,7 +98,7 @@ export class LodashComponent implements OnInit {
     // delArr.forEach((key) => {
     //   delete o[key];
     // })
-    let newO = _.omit(o,delArr)
+    let newO = _.omit(o,delArr);// 可以使用数组或字符串的方式筛选对象的属性，并且最终会返回一个新的对象，中间执行筛选时不会对旧对象产生影响。
     this.print(newO);
     this.print(o);
   }
@@ -125,6 +126,48 @@ export class LodashComponent implements OnInit {
       that.print('key: ' + key + '; value: ' + value);
     })
   }
+
+
+  
+  //链式调用 
+  public chain() {
+    // drop: 创建一个切片数组，去除array前面的n个元素
+    // head: 获取数组 array 的第一个元素。
+    let array = [0,1,2,3,4];
+    let newAry = _(array).drop(2).head();
+    this.print(newAry);
+  }
+
+
+
+
+  //惰性计算
+  public lazy() {
+
+    //filter: 遍历 collection（集合）元素,返回符合条件的所有元素的数组
+    //take: 创建一个数组，从array数组的起始元素开始提取n个元素。
+    function priceLt(x) {
+      return function(item) { return item.price < x; };
+    }
+    let gems = [
+        { name: 'A', price: 4 },
+        { name: 'B', price: 15 },
+        { name: 'C', price: 20},
+        { name: 'D', price: 7  },
+        { name: 'E', price: 3 },
+        { name: 'F', price: 13 },
+        { name: 'G', price: 2 },
+        { name: 'H', price: 20 }
+    ];
+      
+    let chosen = _(gems).filter(priceLt(10)).take(3).value();
+
+    console.log(chosen);
+   
+  }
+
+
+
 
   public print(val) {
     if(typeof(val) === 'object'){
