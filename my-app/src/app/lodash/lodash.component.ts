@@ -28,13 +28,13 @@ export class LodashComponent implements OnInit {
   ngOnInit() {
     // this.test();
     // this.times();
-    this.random(1,10);
+    // this.random(1,10);
     // this.cloneDeep();
     // this.omit();
     // this.pick();
     // this.forEach();
     // this.chain();
-    // this.lazy();
+    this.lazy();
   }
 
   public test() {
@@ -61,7 +61,7 @@ export class LodashComponent implements OnInit {
 
   //在指定范围内获取一个随机值 
   public random(min: number,max: number) {
-    // Math.floor(Math.random() * (max - min)) + min;
+    // Math.floor(Math.random() * (max - min + 1)) + min;
     this.print(_.random(min,max));
     this.print(_.random(min,max,true));//生成随机的浮点数
   }
@@ -141,12 +141,12 @@ export class LodashComponent implements OnInit {
 
 
 
-  //惰性计算
+  //lodash的惰性计算
   public lazy() {
-
     //filter: 遍历 collection（集合）元素,返回符合条件的所有元素的数组
     //take: 创建一个数组，从array数组的起始元素开始提取n个元素。
-    function priceLt(x) {
+
+    function priceFilter(x) {
       return function(item) { return item.price < x; };
     }
     let gems = [
@@ -160,10 +160,10 @@ export class LodashComponent implements OnInit {
         { name: 'H', price: 20 }
     ];
       
-    let chosen = _(gems).filter(priceLt(10)).take(3).value();
+    let chosen = _(gems).filter(priceFilter(10)).take(3).value();
 
     console.log(chosen);
-   
+
   }
 
 

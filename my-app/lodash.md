@@ -38,7 +38,8 @@ Lodash 提高执行速度的思路：Lazy Evaluation（惰性计算）
 
 ![avatar](https://user-gold-cdn.xitu.io/2018/5/31/163b3fda4f502087?imageslim)
 
-第一步是从所有的球中取出所有面值小于 10 的球，第二步是从上一步的结果取三个球。
+- 遍历十个数，把所有<3的数存在一个数组里
+- 从得到的数组里取出3个数
 
 ![avatar](https://user-gold-cdn.xitu.io/2018/5/31/163b3fda1d04f2e7?imageslim)
 
